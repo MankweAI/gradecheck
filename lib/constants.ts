@@ -64,3 +64,18 @@ export const STATUS_LABELS = {
 } as const;
 
 export const ALL_GRADES = Array.from({ length: 9 }, (_, index) => index + 1);
+
+export const SEO_QUALITY_THRESHOLDS = {
+  provinceMinContractors: 10,
+  provinceMinLeafPages: 1,
+  cityMinContractors: 5,
+  cityMinLeafPages: 1,
+  leafMinContractors: 5,
+  leafMinActiveContractors: 1,
+  leafMinEvidenceBackedContractors: 1,
+  contractorMinGradings: 1,
+  gradeMinLocations: 1,
+  gradeMinClasses: 1,
+  classMinContractors: 5,
+  classMinLeafPages: 1,
+} as const;

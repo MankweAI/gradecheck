@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SEO_QUALITY_THRESHOLDS } from "@/pipeline/config";
+import { SEO_QUALITY_THRESHOLDS } from "@/lib/constants";
 
 export const INDEX_FOLLOW_ROBOTS: NonNullable<Metadata["robots"]> = {
   index: true,
