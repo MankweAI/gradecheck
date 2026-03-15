@@ -33,6 +33,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    google: "LTAnbMgKi-69Md-cLG5SpsuQzMTeQoyaz4Gi0SyvNIU",
+  },
   openGraph: {
     title: "GradeCheck | CIDB Contractor Verification Tool",
     description:
