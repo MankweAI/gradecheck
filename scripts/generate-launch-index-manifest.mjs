@@ -1,15 +1,41 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { loadLocalEnv } from "./load-local-env.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const OUTPUT_PATH = path.join(ROOT, "generated", "launch-index-manifest.json");
 const PUBLISHABILITY_PATH = path.join(ROOT, "generated", "pipeline", "publishability-manifest.json");
 
+async function loadLocalEnvIfPresent() {
+  try {
+    const envPath = path.join(ROOT, ".env.local");
+    const raw = await fs.readFile(envPath, "utf8");
+
+    for (const line of raw.split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith("#")) {
+        continue;
+      }
+
+      const separator = trimmed.indexOf("=");
+      if (separator === -1) {
+        continue;
+      }
+
+      const key = trimmed.slice(0, separator).trim();
+      const value = trimmed.slice(separator + 1).trim();
+      if (!process.env[key]) {
+        process.env[key] = value;
+      }
+    }
+  } catch {
+    // ignore missing local env file in CI/build environments
+  }
+}
+
 async function main() {
-  await loadLocalEnv();
+  await loadLocalEnvIfPresent();
 
   try {
     const raw = await fs.readFile(PUBLISHABILITY_PATH, "utf8");
