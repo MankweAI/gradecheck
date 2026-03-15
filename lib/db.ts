@@ -1,6 +1,7 @@
 import "server-only";
 
 import { Pool } from "pg";
+import { getDatabasePoolConfig } from "@/lib/postgres";
 
 declare global {
   var __gradecheckPool: Pool | undefined;
@@ -8,14 +9,7 @@ declare global {
 
 const pool =
   global.__gradecheckPool ??
-  new Pool({
-    host: process.env.PGHOST,
-    port: Number(process.env.PGPORT),
-    database: process.env.PGDATABASE,
-    user: process.env.PGUSER,
-    password: process.env.PGPASSWORD,
-    max: 10,
-  });
+  new Pool(getDatabasePoolConfig({ max: 10 }));
 
 if (process.env.NODE_ENV !== "production") {
   global.__gradecheckPool = pool;

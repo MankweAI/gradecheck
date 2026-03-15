@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SEO_QUALITY_THRESHOLDS } from "@/pipeline/config";
 
 export const INDEX_FOLLOW_ROBOTS: NonNullable<Metadata["robots"]> = {
   index: true,
@@ -9,21 +10,6 @@ export const NOINDEX_FOLLOW_ROBOTS: NonNullable<Metadata["robots"]> = {
   index: false,
   follow: true,
 };
-
-export const SEO_QUALITY_THRESHOLDS = {
-  provinceMinContractors: 10,
-  provinceMinLeafPages: 1,
-  cityMinContractors: 5,
-  cityMinLeafPages: 1,
-  leafMinContractors: 5,
-  leafMinActiveContractors: 1,
-  leafMinEvidenceBackedContractors: 1,
-  contractorMinGradings: 1,
-  gradeMinLocations: 1,
-  gradeMinClasses: 1,
-  classMinContractors: 5,
-  classMinLeafPages: 1,
-} as const;
 
 export function getRobotsForQuality(isIndexable: boolean): NonNullable<Metadata["robots"]> {
   return isIndexable ? INDEX_FOLLOW_ROBOTS : NOINDEX_FOLLOW_ROBOTS;

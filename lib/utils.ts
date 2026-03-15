@@ -201,6 +201,10 @@ export function formatExpiryLabel(expiryDate: string | null, status: string): st
     return `Suspended - Expiry: ${formatDate(expiryDate)}`;
   }
 
+  if (status === "DeRegistered") {
+    return `DeRegistered - Last known expiry: ${formatDate(expiryDate)}`;
+  }
+
   if (status === "Expired" || expiry < now) {
     return `Expired ${months >= 12 ? `${Math.floor(months / 12)} year${Math.floor(months / 12) === 1 ? "" : "s"}` : `${months} month${months === 1 ? "" : "s"}`} ago`;
   }
@@ -236,5 +240,9 @@ export function sortStatuses(status: string): number {
     return 1;
   }
 
-  return 2;
+  if (status === "DeRegistered") {
+    return 2;
+  }
+
+  return 3;
 }

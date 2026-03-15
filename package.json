@@ -4,10 +4,22 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node ./scripts/generate-launch-index-manifest.mjs && next build",
+    "build": "npm run pipeline:publishability && next build",
+    "db:migrate-supabase": "tsx ./scripts/migrate-local-postgres-to-supabase.ts",
+    "db:smoke-test": "tsx ./scripts/db-smoke-test.ts",
     "start": "next start",
     "lint": "tsc --noEmit",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "audit:dataset": "npm run pipeline:audit",
+    "pipeline:audit": "tsx ./scripts/pipeline-audit.ts",
+    "pipeline:batch-report": "tsx ./scripts/pipeline-batch-report.ts",
+    "pipeline:load-batch": "tsx ./scripts/pipeline-load-batch.ts",
+    "pipeline:ops-report": "tsx ./scripts/pipeline-ops-report.ts",
+    "pipeline:plan-crawl": "tsx ./scripts/pipeline-plan-crawl.ts",
+    "pipeline:run-cycle": "tsx ./scripts/pipeline-run-cycle.ts",
+    "pipeline:run-crawl": "tsx ./scripts/pipeline-run-crawl.ts",
+    "pipeline:publishability": "tsx ./scripts/generate-publishability-manifest.ts && node ./scripts/generate-launch-index-manifest.mjs",
+    "test:pipeline": "tsx --test pipeline/*.test.ts"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.2",
@@ -41,6 +53,7 @@
     "eslint-import-resolver-typescript": "^4.4.4",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17",
+    "tsx": "^4.20.0",
     "typescript": "^5.8.3"
   }
 }

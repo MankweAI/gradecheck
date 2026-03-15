@@ -1,8 +1,10 @@
+export type RegistrationStatus = "Active" | "Suspended" | "Expired" | "DeRegistered";
+
 export interface Contractor {
   crs_number: string;
   contractor_name: string;
   trading_name: string | null;
-  registration_status: "Active" | "Suspended" | "Expired";
+  registration_status: RegistrationStatus;
   pe_flag: boolean;
   province: string;
   city: string;

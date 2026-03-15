@@ -60,6 +60,7 @@ export const STATUS_LABELS = {
   Active: "Active",
   Suspended: "Suspended",
   Expired: "Expired",
+  DeRegistered: "DeRegistered",
 } as const;
 
 export const ALL_GRADES = Array.from({ length: 9 }, (_, index) => index + 1);
