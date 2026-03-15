@@ -1,5 +1,5 @@
 import { createDatabasePool } from "@/lib/postgres";
-import { loadLocalEnv } from "./load-local-env";
+import { loadLocalEnv } from "@/lib/load-local-env";
 
 async function main() {
   await loadLocalEnv();

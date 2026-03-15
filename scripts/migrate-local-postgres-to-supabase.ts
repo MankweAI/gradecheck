@@ -5,7 +5,7 @@ import {
   getConfiguredDatabaseLabel,
   getLegacyDatabasePoolConfig,
 } from "@/lib/postgres";
-import { loadLocalEnv } from "./load-local-env";
+import { loadLocalEnv } from "@/lib/load-local-env";
 
 type ContractorRow = {
   crs_number: string;
