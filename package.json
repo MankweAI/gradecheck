@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run pipeline:publishability && next build",
+    "build": "node ./scripts/generate-launch-index-manifest.mjs && next build",
     "db:migrate-supabase": "tsx ./scripts/migrate-local-postgres-to-supabase.ts",
     "db:smoke-test": "tsx ./scripts/db-smoke-test.ts",
     "start": "next start",
